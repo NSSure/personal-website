@@ -1,22 +1,28 @@
 <%- contentFor('body') %>
 <div class="site">
-    <div class="content">
+    <div class="wrapper">
         <% for (var i = 0; i < projects.length; i++) { %>
-        <div class="project-card">
-                <img class="project-image" src="<%= projects[i].gif %>" />
-                <div class="project">
-                    <h2 class="title">
-                        <a href="https://snippets.nsgordon.com">
-                            <%= projects[i].name %>
-                        </a>
-                    </h2>
-                    <p class="description">
-                        <%= projects[i].description %>
-                    </p>
-                    <div class="d-inline">
-                        <div class="badge yellow">JavaScript</div>
-                        <div class="badge green">Vue</div>
+            <div class="project-card">
+                <div class="content">
+                    <img class="project-image" src="<%= projects[i].gif %>" width=200 height=200 />
+                    <div class="project">
+                        <h2 class="title">
+                            <a href="<%= projects[i].site %>">
+                                <%= projects[i].name %>
+                            </a>
+                        </h2>
+                        <p class="description">
+                            <%= projects[i].description %>
+                        </p>
+                        <div class="d-inline">
+                            <div class="badge yellow">JavaScript</div>
+                            <div class="badge green">Vue</div>
+                        </div>
                     </div>
+                </div>
+                <div class="footer">
+                    <a href="<%= projects[i].site %>" target="_blank">Project Site <i class="fas fa-external-link-alt"></i></a>
+                    <a href="<%= projects[i].source %>" target="_blank">View Source Code <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         <% } %>
@@ -32,21 +38,37 @@
     .project-card {
         background-color: white;
         box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        display: flex;
-        flex-direction: row;
         margin-bottom: 50px;
     }
 
-    .project-card>.project {
+    .project-card > .content {
+        display: flex;
+        flex-direction: row;
+        padding: 15px;
+    }
+
+    .project-card > .content > .project {
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: left;
     }
 
-    .project-card>.project>.title {
+    .project-card > .content > .project > .title {
         margin: 0;
+    }
+
+    .project-card > .footer {
+        background-color: #F0F0F0;
+        color: #f7f7f7;
+        padding: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .project-card > .footer a {
+        margin: 0 30px;
     }
 
     .project-image {
@@ -59,10 +81,9 @@
         align-items: center;
         justify-content: center;
         flex-grow: 1;
-        margin: 50px;
     }
 
-    .content {
+    .wrapper {
         align-items: center;
         text-align: center;
     }

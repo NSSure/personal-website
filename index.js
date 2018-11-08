@@ -31,6 +31,14 @@ app.get('/toast', function(req, res) {
     res.render('toast');
 });
 
+app.get('/contact', function(req, res) {
+    res.render('contact');
+});
+
+app.get('/about', function(req, res) {
+    res.render('about');
+});
+
 app.listen(8080, () => {
     console.log('Example app listening on port 8080')
 });
