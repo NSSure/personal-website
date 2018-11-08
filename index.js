@@ -19,6 +19,6 @@ app.get('/blog', function(req, res) {
     res.render('blog');
 });
 
-app.listen(3000, () => {
-    console.log('Example app listening on port 3000')
+app.listen(8008, () => {
+    console.log('Example app listening on port 8080')
 });
