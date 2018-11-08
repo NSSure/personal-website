@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Sure Snippets",
+        "description": "A full fledge snipper generator built for the quick and efficient construction of VS Code snippets.",
+        "gif": "public/gifs/snippet-form.gif"
+    },
+    {
+        "name": "Interactive Periodic Table",
+        "description": "An interactive periodic table built using vue. Comes with overview of each element, shell diagrams, element filtering, and much more.",
+        "gif": "public/gifs/periodic-table.gif"
+    },
+    {
+        "name": "Vue Sure Toast",
+        "description": "Toast plugin built and designed for use with Vuejs. Vue Sure Toast is highly configurable and easy to use.",
+        "gif": "public/gifs/sure-toast.gif"
+    }
+]

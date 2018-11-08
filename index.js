@@ -1,22 +1,34 @@
+const projects = require('./public/data/projects.json');
+const path = require('path');
 const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
 const app = express();
 
-// At the top of your server.js
-process.env.PWD = process.cwd()
+app.use("/public", express.static(path.join(__dirname, 'public')));
 
-// Then
-app.use(express.static(process.env.PWD + '/public'));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.set('layout extractScripts', true);
+app.set('layout extractStyles', true);
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.use(expressLayouts);
 
-// Routes
+// Index page
 app.get('/', function(req, res) {
-    res.render('index');
+    res.locals = { projects: projects };
+    res.render('default')
 });
 
-app.get('/blog', function(req, res) {
-    res.render('blog');
+app.get('/periodic', function(req, res) {
+    res.render('periodic');
+});
+
+app.get('/snippets', function(req, res) {
+    res.render('snippets');
+});
+
+app.get('/toast', function(req, res) {
+    res.render('toast');
 });
 
 app.listen(8080, () => {

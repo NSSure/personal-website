@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This would be defined in the index.js route -->
+  <!-- res.locals = { title: 'Example', message: 'This is a message' }; -->
+  <!-- <title><%= defineContent('title') %></title> -->
+  <title>NSSure Personal Website</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <% /* Place any styles in the page in this section. */ %>
+  <%- style %>
+</head>
+<body>
+  <%- body %>
+
+  <footer>
+    <div class="content">
+      <a href="https://github.com/NSSure" target="_blank">
+        <i class="fab fa-github fa-3x" style="margin-bottom: 30px;"></i>
+      </a>
+      <h4 style="flex-grow: 1;">View my github to see all my projects</h4>
+    </div>
+    <ul class="helpful-links">
+      <li><a href="https://github.com/NSSure" target="_blank">Github</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </footer>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Trebuchet MS';
+      background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      <% /* background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%); */ %>
+    }
+    footer {
+      background-color: #fff;
+      text-align: center;
+    }
+    footer .content {
+      flex-grow: 1;
+      padding: 50px;
+    }
+    .helpful-links {
+      display: flex; 
+      flex-direction: row;
+      justify-content: space-around;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      background-color: #333333;
+    }
+    .helpful-links li {
+      flex-grow: 1;
+      padding: 15px;
+      cursor: pointer;
+    }
+    .helpful-links li a {
+      text-decoration: none;
+      color: #f7f7f7;
+    }
+    .helpful-links li:hover {
+      background-color: #222222;
+    }
+  </style>
+
+  <% /* Place any scripts contained in views at the end of the page. */ %>
+  <%- script %>
+</body>
+</html>
