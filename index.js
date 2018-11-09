@@ -2,9 +2,12 @@ const projects = require('./public/data/projects.json');
 const path = require('path');
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const axios = require('axios');
+const moment = require('moment');
 const app = express();
 
 app.use("/public", express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/static'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,16 +22,9 @@ app.get('/', function(req, res) {
     res.render('default')
 });
 
-app.get('/periodic', function(req, res) {
-    res.render('periodic');
-});
-
-app.get('/snippets', function(req, res) {
-    res.render('snippets');
-});
-
-app.get('/toast', function(req, res) {
-    res.render('toast');
+app.get('/project/:repo', async function(req, res) {
+    let response = await axios.get(`https://api.github.com/repos/NSSure/${req.params.repo}/issues`);
+    res.render('project', { issues: response.data, moment: moment });
 });
 
 app.get('/contact', function(req, res) {
