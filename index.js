@@ -23,8 +23,16 @@ app.get('/', function(req, res) {
 });
 
 app.get('/project/:repo', async function(req, res) {
-    let response = await axios.get(`https://api.github.com/repos/NSSure/${req.params.repo}/issues`);
-    res.render('project', { issues: response.data, moment: moment });
+    let repositoryResponse = await axios.get(`https://api.github.com/repos/NSSure/${req.params.repo}`);
+    let issuesResponse = await axios.get(`https://api.github.com/repos/NSSure/${req.params.repo}/issues`);
+
+    console.log(repositoryResponse.data);
+
+    res.render('project', {
+        repository: repositoryResponse.data,
+        issues: issuesResponse.data, 
+        moment: moment }
+    );
 });
 
 app.get('/contact', function(req, res) {

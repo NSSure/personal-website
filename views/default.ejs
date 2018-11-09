@@ -1,32 +1,30 @@
 <%- contentFor('body') %>
-<div class="site">
-    <div class="wrapper">
-        <% for (var i = 0; i < projects.length; i++) { %>
-            <div class="project-card">
-                <div class="content">
-                    <img class="project-image" src="<%= projects[i].gif %>" width=200 height=200 />
-                    <div class="project">
-                        <h2 class="title">
-                            <a href="/project/<%= projects[i].repoName %>">
-                                <%= projects[i].name %>
-                            </a>
-                        </h2>
-                        <p class="description">
-                            <%= projects[i].description %>
-                        </p>
-                        <div class="d-inline">
-                            <div class="badge yellow">JavaScript</div>
-                            <div class="badge green">Vue</div>
-                        </div>
+<div class="container">
+    <% for (var i = 0; i < projects.length; i++) { %>
+        <div class="project-card">
+            <div class="content">
+                <img class="project-image d-none d-lg-block" src="<%= projects[i].gif %>" width=200 height=200 />
+                <div class="project">
+                    <h2 class="title">
+                        <a href="/project/<%= projects[i].repoName %>">
+                            <%= projects[i].name %>
+                        </a>
+                    </h2>
+                    <p class="description">
+                        <%= projects[i].description %>
+                    </p>
+                    <div class="d-inline">
+                        <div class="badge yellow">JavaScript</div>
+                        <div class="badge green">Vue</div>
                     </div>
                 </div>
-                <div class="footer">
-                    <a href="<%= projects[i].site %>" target="_blank">Project Site <i class="fas fa-external-link-alt"></i></a>
-                    <a href="<%= projects[i].source %>" target="_blank">View Source Code <i class="fas fa-external-link-alt"></i></a>
-                </div>
             </div>
-        <% } %>
-    </div>
+            <div class="footer">
+                <a href="<%= projects[i].site %>" target="_blank">Project Site <i class="fas fa-external-link-alt"></i></a>
+                <a href="<%= projects[i].source %>" target="_blank">View Source Code <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    <% } %>
 </div>
 
 <style>
@@ -68,18 +66,5 @@
 
     .project-image {
         margin-right: 15px;
-    }
-
-    .site {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;
-    }
-
-    .wrapper {
-        align-items: center;
-        text-align: center;
     }
 </style>

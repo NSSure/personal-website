@@ -1,6 +1,23 @@
-<div class="project">
+<div class="container">
+    <div class="project">
+        <img class="image" src="<%= repository.owner.avatar_url %>" />
+        <div class="content">
+            <h4><a href="<%= repository.html_url %>" target="_blank"><%= repository.name %></a></h4>
+            <p>Authored by: <%= repository.owner.login %></p>
+            <p>Language: <%= repository.language %></p>
+            <p>Open issues: <%= repository.open_issues_count %></p>
+            <p><%= repository.description %></p>
+
+                <% for (var i = 0; i < repository.topics ? repository.topics.length : 0; i++) { %>
+                    <div class="badge yellow"><%= repository[i] %></div>
+                <% } %>
+        </div>
+    </div>
+
+    <br>
+
     <div id="issues">
-        Project Issues
+        <h5 style="padding: 15px 0;">Repository Issues - Displaying <%= issues.length %> issue(s)</h5>
 
         <% for (var i = 0; i < issues.length; i++) { %>
             <div class="item">
@@ -19,14 +36,22 @@
 
 <style>
     .project {
-        padding: 50px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .project > .image {
+
+    }
+
+    .project > .content {
+        padding: 15px;
     }
 
     #issues {
         background-color: white;
         padding: 15px;
-        width: 50%;
-        margin: 0 auto;
     }
 
     #issues .item {
