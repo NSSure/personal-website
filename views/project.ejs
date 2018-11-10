@@ -16,25 +16,64 @@
 
     <br>
 
-    <div id="issues">
-        <h5 style="padding: 15px 0;">Repository Issues - Displaying <%= issues.length %> issue(s)</h5>
-
-        <% for (var i = 0; i < issues.length; i++) { %>
-            <div class="item">
-                <h5><span><a href="<%= issues[i].html_url %>" target="_blank"><%= issues[i].title %></a></span></h5>
-                <div style="margin-bottom: 15px;"><%= issues[i].body %></div>
-
-                <div style="margin-bottom: 15px; font-size: .75rem;">Created at: <%= moment(issues[i].created_at).format('MM-DD-YYYY') %> // Updated at: <%= moment(issues[i].updated_at).format('MM-DD-YYYY') %> // Issue #<%= issues[i].number %></div>
-
-                <% for (var ii = 0; ii < issues[i].labels.length; ii++) { %>
-                    <div class="badge" style="background-color: #<%= issues[i].labels[ii].color %>"><%= issues[i].labels[ii].name %></div>
-                <% } %>
+    <div style="background-color: white; padding: 15px;">
+        <ul class="nav nav-pills nav-fill" style="margin-bottom: 15px;">
+            <li class="nav-item">
+                <a class="nav-link active" id="readme-tab" data-toggle="tab" href="#readme-content" role="tab">Readme</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="issues-tab" data-toggle="tab" href="#issues-content" role="tab">Issues</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="project-tab-content">
+            <div class="tab-pane fade show active" id="readme-content" role="tabpanel">
+                <%- html %>
             </div>
-        <% } %>
+            <div class="tab-pane fade" id="issues-content" role="tabpanel">
+                <div id="issues">
+                    <h5 style="padding: 15px 0;">Repository Issues - Displaying <%= issues.length %> issue(s)</h5>
+
+                    <% for (var i = 0; i < issues.length; i++) { %>
+                        <div class="item">
+                            <h5><span><a href="<%= issues[i].html_url %>" target="_blank"><%= issues[i].title %></a></span></h5>
+                            <div style="margin-bottom: 15px;"><%= issues[i].body %></div>
+
+                            <div style="margin-bottom: 15px; font-size: .75rem;">Created at: <%= moment(issues[i].created_at).format('MM-DD-YYYY') %> // Updated at: <%= moment(issues[i].updated_at).format('MM-DD-YYYY') %> // Issue #<%= issues[i].number %></div>
+
+                            <% for (var ii = 0; ii < issues[i].labels.length; ii++) { %>
+                                <div class="badge" style="background-color: #<%= issues[i].labels[ii].color %>"><%= issues[i].labels[ii].name %></div>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <style>
+    table {
+        border: solid 1px #DDEEEE;
+        border-collapse: collapse;
+        border-spacing: 0;
+        font: normal 13px Arial, sans-serif;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    table thead th {
+        background-color: #DDEFEF;
+        border: solid 1px #DDEEEE;
+        color: #336B6B;
+        padding: 10px;
+        text-align: left;
+        text-shadow: 1px 1px 1px #fff;
+    }
+    table tbody td {
+        border: solid 1px #DDEEEE;
+        color: #333;
+        padding: 10px;
+        text-shadow: 1px 1px 1px #fff;
+    }
     .project {
         background-color: #ffffff;
         display: flex;
