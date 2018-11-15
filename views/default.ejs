@@ -14,8 +14,9 @@
                         <%= projects[i].description %>
                     </p>
                     <div class="d-inline">
-                        <div class="badge yellow">JavaScript</div>
-                        <div class="badge green">Vue</div>
+                        <% for (var ii = 0; ii < projects[i].tags.length; ii++) { %>
+                            <div class="badge" style="background-color: <%= projects[i].tags[ii].color %>"><%= projects[i].tags[ii].title %></div>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -30,7 +31,7 @@
 <style>
     .project-card {
         background-color: white;
-        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         margin-bottom: 50px;
     }
 
@@ -66,5 +67,6 @@
 
     .project-image {
         margin-right: 15px;
+        border: 1px solid #c7c7c7;
     }
 </style>

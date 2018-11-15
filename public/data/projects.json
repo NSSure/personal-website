@@ -1,11 +1,27 @@
 [
     {
+        "name": "Simple Framework",
+        "description": "Front-end framework aiming to make development simple.",
+        "gif": "gifs/simple-framework.gif",
+        "site": "https://simple.nsgordon.com",
+        "source": "https://github.com/NSSure/simple-framework",
+        "repoName": "simple-framework",
+        "tags": [
+            { "title": "JavaScript", "color": "#FFCA28" },
+            { "title": "HTML", "color": "#E44D26" }
+        ]
+    },
+    {
         "name": "Sure Snippets",
         "description": "A full fledge snipper generator built for the quick and efficient construction of VS Code snippets.",
         "gif": "gifs/snippet-form.gif",
         "site": "https://snippets.nsgordon.com",
         "source": "https://github.com/NSSure/sure-snippets",
-        "repoName": "sure-snippets"
+        "repoName": "sure-snippets",
+        "tags": [
+            { "title": "JavaScript", "color": "#FFCA28" },
+            { "title": "Vue", "color": "#41B883" }
+        ]
     },
     {
         "name": "Interactive Periodic Table",
@@ -13,7 +29,11 @@
         "gif": "gifs/periodic-table.gif",
         "site": "https://periodic.nsgordon.com",
         "source": "https://github.com/NSSure/interactive-periodic-table",
-        "repoName": "interactive-periodic-table"
+        "repoName": "interactive-periodic-table",
+        "tags": [
+            { "title": "JavaScript", "color": "#FFCA28" },
+            { "title": "Vue", "color": "#41B883" }
+        ]
     },
     {
         "name": "Vue Sure Toast",
@@ -21,6 +41,10 @@
         "gif": "gifs/sure-toast.gif",
         "site": "https://sure-toast.nsgordon.com",
         "source": "https://github.com/NSSure/vue-sure-toast",
-        "repoName": "vue-sure-toast"
+        "repoName": "vue-sure-toast",
+        "tags": [
+            { "title": "JavaScript", "color": "#FFCA28" },
+            { "title": "Vue", "color": "#41B883" }
+        ]
     }
 ]
