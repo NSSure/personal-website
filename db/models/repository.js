@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING, allowNull: false },
     fullName: { type: DataTypes.STRING, allowNull: false },
     htmlUrl: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: false },
-    topics: { type: DataTypes.STRING, allowNull: false, defaultValue: '' },
+    description: { type: DataTypes.TEXT, allowNull: false },
+    topics: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
   });
 }

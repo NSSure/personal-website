@@ -1,32 +1,51 @@
 const github = require('../common/github');
 const RepositoryUtility = require('../db/utilities/repository-utility');
+const IssueUtility = require('../db/utilities/issue-utility');
 
 module.exports = {
     schedule() {
         let CronJob = require('cron').CronJob;
-        new CronJob('*/10 * * * * *', this.processRepositories, null, true);
-    },
+        new CronJob('*/10 * * * * *', function() {
+            github.listMyRepositories().then((gitHubRepos) => {
+                gitHubRepos.forEach(async (gitHubRepo) => {
+                    let repositories = [];
 
-    async processRepositories() {
-        let gitHubRepositories = await github.listMyRepositories();
-        let repositories = [];
+                    let repository = {
+                        gitHubNodeId: gitHubRepo.node_id,
+                        name: gitHubRepo.name,
+                        fullName: gitHubRepo.full_name,
+                        description: gitHubRepo.description || '',
+                        htmlUrl: gitHubRepo.html_url,
+                        topics: JSON.stringify(gitHubRepo.topics)
+                    }
 
-        console.log(gitHubRepositories);
+                    repositories.push(repository);
+                    
+                    github.getRepositoryIssues(gitHubRepo.name).then((repoIssues) => {
+                        let issues = [];
 
-        gitHubRepositories.forEach((gitHubRepository) => {
-            repositories.push({
-                gitHubNodeId: gitHubRepository.node_id,
-                name: gitHubRepository.name,
-                fullName: gitHubRepository.full_name,
-                description: gitHubRepository.description || '',
-                htmlUrl: gitHubRepository.html_url,
-                topics: gitHubRepository.topics
+                        repoIssues.forEach((repoIssue) => {
+                            issues.push({
+                                gitHubNodeId: repoIssue.node_id,
+                                repositoryGitHubNodeId: repository.gitHubNodeId,
+                                title: repoIssue.title,
+                                body: repoIssue.body,
+                                htmlUrl: repoIssue.html_url,
+                                number: repoIssue.number,
+                                labels: JSON.stringify(repoIssue.labels),
+                                gitHubCreatedAt: repoIssue.created_at,
+                                gitHubUpdatedAt: repoIssue.updated_at
+                            });
+                        })
+
+                        let issueUtil = new IssueUtility();
+                        issueUtil.model.bulkCreate(issues);
+                    });
+
+                    let repositoryUtil = new RepositoryUtility();
+                    repositoryUtil.model.bulkCreate(repositories);
+                });
             });
-        });
-
-        console.log(repositories);
-
-        let repositoryUtil = new RepositoryUtility();
-        repositoryUtil.model.bulkCreate(repositories);
+        }, null, true);
     }
 };
