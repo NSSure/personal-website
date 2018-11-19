@@ -1,4 +1,4 @@
-const posts = require('./public/blog/posts.json');
+const posts = require('../public/blog/posts.json');
 const markdown = require('./markdown');
 
 module.exports = {

@@ -1,3 +1,6 @@
+const startup = require('./startup');
+startup.run();
+
 // Third party scripts
 const path = require('path');
 const express = require('express');
@@ -5,9 +8,9 @@ const expressLayouts = require('express-ejs-layouts');
 const moment = require('moment');
 
 // Custom scripts
-const markdown = require('./markdown');
-const github = require('./github');
-const blog = require('./blog');
+const markdown = require('./common/markdown');
+const github = require('./common/github');
+const blog = require('./common/blog');
 
 // Custom data
 const projects = require('./public/data/projects.json');
@@ -26,7 +29,7 @@ app.use(expressLayouts);
 // Index page
 app.get('/', function(req, res) {
     res.locals = { projects: projects };
-    res.render('default')   
+    res.render('default');
 });
 
 app.get('/blog', (req, res) => {
