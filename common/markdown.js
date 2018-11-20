@@ -3,7 +3,7 @@ const showdown = require('showdown');
 
 module.exports = {
     loadRepoMarkdown (repo) {
-        let markdown = fs.readFileSync(`./markdown/${repo}.md`, 'utf8');
+        let markdown = fs.readFileSync(`./public/markdown/${repo}.md`, 'utf8');
         
         let converter = new showdown.Converter({
             tables: true

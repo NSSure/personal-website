@@ -6,5 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     htmlUrl: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.TEXT, allowNull: false },
     topics: { type: DataTypes.TEXT, allowNull: false, defaultValue: '' },
+    gifUrl: { type: DataTypes.STRING, allowNull: true }
   });
 }

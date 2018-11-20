@@ -5,7 +5,7 @@ const IssueUtility = require('../db/utilities/issue-utility');
 module.exports = {
     schedule() {
         let CronJob = require('cron').CronJob;
-        new CronJob('*/10 * * * * *', function() {
+        new CronJob('* * */10 * * *', function() {
             github.listMyRepositories().then((gitHubRepos) => {
                 gitHubRepos.forEach(async (gitHubRepo) => {
                     let repositories = [];

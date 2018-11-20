@@ -6,7 +6,7 @@
                 <img class="project-image d-none d-lg-block" src="<%= projects[i].gif %>" width=200 height=200 />
                 <div class="project">
                     <h2 class="title">
-                        <a href="/project/<%= projects[i].repoName %>">
+                        <a href="/project/<%= projects[i].name %>">
                             <%= projects[i].name %>
                         </a>
                     </h2>
@@ -14,8 +14,9 @@
                         <%= projects[i].description %>
                     </p>
                     <div class="d-inline">
-                        <% for (var ii = 0; ii < projects[i].tags.length; ii++) { %>
-                            <div class="badge" style="background-color: <%= projects[i].tags[ii].color %>"><%= projects[i].tags[ii].title %></div>
+                        <% let topics = JSON.parse(projects[i].topics); %>
+                        <% for (var ii = 0; ii < topics.length; ii++) { %>
+                            <div class="label"><%= topics[ii] %></div>
                         <% } %>
                     </div>
                 </div>

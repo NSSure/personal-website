@@ -13,7 +13,7 @@ class Database {
     this.context.import('./models/issue.js');
     this.context.import('./models/repository.js');
 
-    this.context.sync({ force: true });
+    this.context.sync({ force: false });
   }
 }
 
