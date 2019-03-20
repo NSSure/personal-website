@@ -11,7 +11,9 @@
     <img src="/blog/sample-blog-post/images/code.jpg" id="test" style="width: 100%;" />
 </div>
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse magna massa, pharetra vitae malesuada non, interdum nec libero. Etiam at felis lacus. Vestibulum congue varius egestas. Nullam non magna sapien. Pellentesque sed est vel ante feugiat mattis porttitor id lectus. Mauris lacinia est tellus, ultricies finibus nisi rutrum ut.
+This is a sample blog post to ensure posts are rendering properly.
+
+Here is a sample code block.
 
 ```javascript
 this.$sureToast.show('I am a toast message', 'fa fa-info-circle', {
@@ -29,8 +31,5 @@ this.$sureToast.show('I am a toast message', 'fa fa-info-circle', {
   ]
 });
 ```
-Proin aliquet purus sed sapien mattis, id fringilla ligula dignissim. Proin quis scelerisque augue, eu egestas est. Donec et ante eget velit ultrices tempus id sed mi. Etiam rutrum ipsum eget nisl aliquet cursus. Morbi lobortis euismod nisi, vel pellentesque ipsum. Proin pretium gravida nisl, nec condimentum metus gravida ac. Etiam nisi tortor, volutpat quis bibendum sit amet, volutpat a lacus.
 
-Nulla eleifend mauris eu tempus hendrerit. Donec libero tellus, vulputate vitae auctor nec, congue a enim. Nullam eu eleifend nibh. Aenean eleifend convallis ex, sed convallis diam pulvinar cursus. Nam ut pharetra mauris, ut convallis eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin laoreet velit eu lorem rutrum, quis facilisis leo imperdiet. Cras imperdiet aliquam ex, eget ullamcorper nunc vulputate at. Phasellus non pellentesque eros. Aenean vel molestie massa.
-
-Integer convallis pretium consequat. Nulla sit amet pharetra purus, eget commodo lorem. Sed aliquam congue volutpat. Mauris tempus nec nibh sit amet fermentum. Maecenas elementum metus at dolor bibendum tempor. Sed ac aliquet risus, vitae bibendum lacus. Vestibulum sed ligula erat. Aenean non urna mauris. Quisque nisi quam, venenatis at laoreet et, tempus nec ipsum. Sed interdum, elit id eleifend faucibus, orci neque vestibulum justo, non consequat mi ipsum quis purus. Nullam facilisis turpis nibh, at lacinia purus blandit in. Integer laoreet aliquam nunc et gravida.
+This is the end of the sample blog post.

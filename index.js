@@ -12,9 +12,6 @@ const markdown = require("./common/markdown");
 const github = require("./common/github");
 const blog = require("./common/blog");
 
-// Custom data
-const projects = require("./public/data/projects.json");
-
 const app = express();
 
 app.use("/", express.static(path.join(__dirname, "public")));
@@ -34,6 +31,12 @@ app.get("/", async (req, res) => {
     let repositories = await repositoryUtil.model.findAll();
     let ignoredRepositories = ["board-manager", "personal-website", "currency-tracker", "project-ideas", "XamarinFormsSamples"];
 
+    if (repositories.length === 0) {
+        const githubService = require('./services/github-service');
+        githubService.fetchGithubRepos();
+        repositories = await repositoryUtil.model.findAll();
+    }
+
     for (let i = 0; i < repositories.length; i++) {
         let ignoredIndex = ignoredRepositories.findIndex(x => x === repositories[i].dataValues.name);
 
@@ -43,7 +46,6 @@ app.get("/", async (req, res) => {
     }
 
     res.locals = { projects: repositories };
-
     res.render("default");
 });
 
@@ -68,10 +70,12 @@ app.get("/project/:repo", async (req, res) => {
     let repository = await github.getRepository(repo);
     let issues = await github.getRepositoryIssues(repo);
 
+    let repoMarkdown = await markdown.loadRepoMarkdown(repo);
+
     res.render("project", {
         repository: repository,
         issues: issues,
-        html: markdown.loadRepoMarkdown(repo),
+        html: repoMarkdown,
         moment: moment
     });
 });

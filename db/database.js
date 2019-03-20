@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 
 class Database {
   constructor() {
-    this.context = new Sequelize("database", "root", "test", {
+    this.context = new Sequelize("website", "root", "test", {
       host: "localhost",
       dialect: "mysql",
       operatorsAliases: false

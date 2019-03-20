@@ -1,9 +1,22 @@
 const fs = require('fs');
 const showdown = require('showdown');
+const github = require('./github');
 
 module.exports = {
-    loadRepoMarkdown (repo) {
-        let markdown = fs.readFileSync(`./public/markdown/${repo}.md`, 'utf8');
+    async loadRepoMarkdown (repo) {
+        let markdownPath = `./public/markdown/${repo}.md`;
+
+        if (!fs.existsSync(markdownPath)) {
+            let repoMarkdown = await github.getRepositoryMarkdown(repo);
+
+            if (!repoMarkdown) {
+                repoMarkdown = 'Project has no README.md';
+            }
+
+            fs.writeFileSync(markdownPath, repoMarkdown);
+        }
+
+        let markdown = fs.readFileSync(markdownPath, 'utf8');
         
         let converter = new showdown.Converter({
             tables: true

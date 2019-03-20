@@ -1,4 +1,4 @@
-# Interactive Periodic Table
+# sure-pixel
 
 ## Project setup
 ```
