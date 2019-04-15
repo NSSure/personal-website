@@ -2,10 +2,11 @@ const Sequelize = require("sequelize");
 
 class Database {
   constructor() {
-    this.context = new Sequelize("website", "root", "test", {
-      host: "localhost",
-      dialect: "mysql",
-      operatorsAliases: false
+    this.context = new Sequelize({
+      database: process.env.DB_NAME,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      dialect: process.env.DB_DIALECT
     });
   }
 

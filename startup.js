@@ -1,7 +1,7 @@
 module.exports = {
     run() {
         require('dotenv').config();
-        this.databaseSetup();
+        // this.databaseSetup();
 
         const githubService = require('./services/github-service');
         githubService.schedule();

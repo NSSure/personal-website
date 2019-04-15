@@ -51,7 +51,6 @@ app.get("/", async (req, res) => {
 
 app.get("/blog", async (req, res) => {
     let posts = blog.posts();
-    console.log(posts);
 
     res.render("blog", {
         posts: posts
