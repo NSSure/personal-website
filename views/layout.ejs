@@ -1,50 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>NSSure Personal Website</title>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
   <% /* Place any styles in the page in this section. */ %>
   <%- style %>
 </head>
-<body style="display: flex; flex-direction: column;">
-  <header>
-    <ul class="navigation-links">
-      <li><a href="/">Projects</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="https://github.com/NSSure" target="_blank">Github <i class="fas fa-external-link-alt"></i></a></li>
-    </ul>
-  </header>
 
-  <div style="flex-grow: 1; padding-bottom: 50px;">
+<body>
+  <div style="flex-grow: 1;">
     <%- body %>
   </div>
-
-  <footer>
-    <div class="content">
-      <a href="https://github.com/NSSure" target="_blank">
-        <i class="fab fa-github fa-3x" style="margin-bottom: 30px;"></i>
-      </a>
-      <h4 style="flex-grow: 1;">View my github to see all my projects</h4>
-    </div>
-    <ul class="helpful-links">
-      <li><a href="https://github.com/NSSure" target="_blank">Github</a></li>
-    </ul>
-  </footer>
-
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
       background-color: #EEEEEE;
       font-family: 'Roboto', sans-serif;
+    }
+
+    .banner {
+      color: white;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(images/computer-banner.jpg);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: rgba(147, 112, 219, 0.8);
+    }
+
+    .banner>.banner-inner>.banner-inner-header h1 {
+      font-size: 4rem;
+    }
+
+    .banner>.banner-inner>.banner-inner-header a {
+      color: white;
+      border: 2px solid white;
+      font-size: 1.5rem;
+    }
+
+    .banner>.banner-inner>.banner-inner-header a:hover {
+      background-color: white;
+      color: #282828;
+    }
+
+    .banner>.banner-inner>.banner-inner-content {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      align-items: center;
+      padding: 0 30px;
+    }
+
+    .banner>.banner-inner>.banner-inner-content>.projects {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      margin: 0 30px;
+    }
+
+    .banner>.banner-inner>.banner-inner-content>.projects .project-card {
+      min-width: 20%;
+      margin-bottom: 0;
     }
 
     footer {
@@ -58,7 +92,7 @@
     }
 
     .navigation-links {
-      display: flex; 
+      display: flex;
       flex-direction: row;
       justify-content: center;
       list-style-type: none;
@@ -76,7 +110,7 @@
     }
 
     .helpful-links {
-      display: flex; 
+      display: flex;
       flex-direction: row;
       justify-content: space-around;
       list-style-type: none;
@@ -108,11 +142,11 @@
     }
 
     .badge {
-        background-color: transparent;
-        color: #383838;
-        padding: 10px;
-        border-radius: 5px;
-        margin-right: 10px;
+      background-color: transparent;
+      color: #383838;
+      padding: 10px;
+      border-radius: 5px;
+      margin-right: 10px;
     }
 
     .label {
@@ -124,29 +158,42 @@
     }
 
     .yellow {
-        background-color: #FFCA28;
+      background-color: #FFCA28;
     }
 
     .green {
-        background-color: #41B883;
+      background-color: #41B883;
     }
 
     .d-inline {
-        display: flex;
-        flex-direction: row;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .last-updated {
+        font-size: .75rem;
+        margin-bottom: 15px;
     }
   </style>
 
   <% /* Place any scripts contained in views at the end of the page. */ %>
   <%- script %>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 
   <script>hljs.initHighlightingOnLoad();</script>
+
 </body>
+
 </html>

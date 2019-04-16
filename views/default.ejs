@@ -1,83 +1,58 @@
-<%- contentFor('body') %>
-<div class="container">
-    <% for (var i = 0; i < projects.length; i++) { %>
-        <div class="row">
-            <div class="col-md-6 col-md-12">
-                <div class="project-card">
-                    <div class="content">
-                        <div class="project">
-                            <h2 class="title">
-                                <a href="/project/<%= projects[i].name %>">
-                                    <%= projects[i].name %>
-                                </a>
-                            </h2>
-                            <p class="description">
-                                <%= projects[i].description %>
-                            </p>
-                            <div class="d-inline last-updated text-muted">
-                                <i class="fa fa-clock"></i>
-                                Last Updated <%= projects[i].updatedAt.toISOString().replace('T', ' ').substr(0, 10) %>
-                            </div>
-                            <div class="d-inline" style="margin-bottom: 15px;">
-                                <% let topics = JSON.parse(projects[i].topics); %>
-                                <%if (topics.length > 0) { %>
-                                    <% for (var ii = 0; ii < topics.length; ii++) { %>
-                                        <div class="label"><%= topics[ii] %></div>
-                                    <% } %>
-                                <% } %>
-                                
-                                <%if (topics.length === 0) { %>
-                                    <div class="label">No topics available</div>
-                                <% } %>
-                            </div>
-                            <div class="d-inline">
-                                <a href="<%= projects[i].site %>" target="_blank" style="margin-right: 5px;">Project Site <i class="fas fa-external-link-alt"></i></a>
-                                <a href="<%= projects[i].source %>" target="_blank">View Source Code <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        <% /* <img class="project-image d-none d-lg-block" src="https://via.placeholder.com/450x300" width=450 height=300 /> */ %>
-                    </div>
-                </div>
+<section class="banner">
+    <div class="banner-inner">
+        <div class="banner-inner-header">
+            <h1>Front-end/Back-end Developer</h1>
+            <div style="display: flex; flex-direction: row; text-align: center;">
+                <h2 id="type-showcase"></h2>
+                <h2 id="blinking-cursor" style="display: none;">|</h2>
             </div>
+            <br>
+            <div>
+                <a href="/projects" style="cursor: pointer;" class="btn">Projects</a>
+                <a href="/blog" style="cursor: pointer;" class="btn">Blogs</a>
+                <a href="https://github.com/NSSure" style="cursor: pointer;" class="btn"><i
+                        class="fab fa-github fa-lg"></i></a>
+            </div>
+            <br>
+            <p style="background-color: #F7DF1E; color: #282828; padding: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); border-radius: 8px;">
+                <i class="fa fa-exclamation-triangle"></i>
+                <span>This website is a work in progress</span>
+            </p>
         </div>
-    <% } %>
-</div>
+    </div>
+</section>
 
-<style>
-    .last-updated {
-        font-size: .75rem;
-        margin-bottom: 15px;
-    }
+<script>
+    var typeShowcase = document.getElementById("type-showcase");
+    var blinkingCursor = document.getElementById("blinking-cursor");
 
-    .project-card {
-        background-color: white;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-        margin-bottom: 50px;
-    }
+    var showcaseText = "Basic project showcase and more...";
 
-    .project-card > .content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
+    var textIndex = 0;
+    var isTypingDone;
 
-    .project-card > .content > .project {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-        padding: 15px;
-    }
+    var intervalId = setInterval(function () {
+        typeShowcase.innerHTML += showcaseText[textIndex];
+        textIndex++;
 
-    .project-card > .content > .project > .title {
-        margin: 0;
-    }
+        if (textIndex >= showcaseText.length) {
+            clearInterval(intervalId);
+            isTypingDone = true;
+        }
+    }, 100);
 
-    .project-card > .footer a {
-        margin: 0 30px;
-    }
+    var isCursor = false;
 
-    .project-image {
-        margin-left: 15px;
-    }
-</style>
+    setInterval(function () {
+        if (isTypingDone) {
+            if (!isCursor) {
+                blinkingCursor.style.display = '';
+                isCursor = true;
+            }
+            else {
+                blinkingCursor.style.display = 'none';
+                isCursor = false;
+            }
+        }
+    }, 400);
+</script>

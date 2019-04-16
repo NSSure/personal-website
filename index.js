@@ -49,6 +49,29 @@ app.get("/", async (req, res) => {
     res.render("default");
 });
 
+app.get("/projects", async (req, res) => {
+    let repositoryUtil = new RepositoryUtility();
+    let repositories = await repositoryUtil.model.findAll();
+    let ignoredRepositories = ["board-manager", "personal-website", "currency-tracker", "project-ideas", "XamarinFormsSamples"];
+
+    if (repositories.length === 0) {
+        const githubService = require('./services/github-service');
+        githubService.fetchGithubRepos();
+        repositories = await repositoryUtil.model.findAll();
+    }
+
+    for (let i = 0; i < repositories.length; i++) {
+        let ignoredIndex = ignoredRepositories.findIndex(x => x === repositories[i].dataValues.name);
+
+        if (ignoredIndex > -1) {
+            repositories.splice(i, 1);
+        }
+    }
+
+    res.locals = { projects: repositories };
+    res.render("projects");
+});
+
 app.get("/blog", async (req, res) => {
     let posts = blog.posts();
 
