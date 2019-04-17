@@ -24,48 +24,44 @@ app.set("layout extractStyles", true);
 app.use(expressLayouts);
 
 const RepositoryUtility = require("./db/utilities/repository-utility");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 // Index page
 app.get("/", async (req, res) => {
-    let repositoryUtil = new RepositoryUtility();
-    let repositories = await repositoryUtil.model.findAll();
-    let ignoredRepositories = ["board-manager", "personal-website", "currency-tracker", "project-ideas", "XamarinFormsSamples"];
+    // let repositoryUtil = new RepositoryUtility();
+    // let repositories = await repositoryUtil.model.findAll({
+    //     where: {
+    //         name: {
+    //             [Op.notIn]: ["board-manager", "currency-tracker", "project-ideas", "board-manager", "sure-player", "simple-framework", "Clangy", "XamarinFormsSamples"]
+    //         }
+    //     }
+    // });
 
-    if (repositories.length === 0) {
-        const githubService = require('./services/github-service');
-        githubService.fetchGithubRepos();
-        repositories = await repositoryUtil.model.findAll();
-    }
+    // if (repositories.length === 0) {
+    //     const githubService = require('./services/github-service');
+    //     githubService.fetchGithubRepos();
+    //     repositories = await repositoryUtil.model.findAll();
+    // }
 
-    for (let i = 0; i < repositories.length; i++) {
-        let ignoredIndex = ignoredRepositories.findIndex(x => x === repositories[i].dataValues.name);
-
-        if (ignoredIndex > -1) {
-            repositories.splice(i, 1);
-        }
-    }
-
-    res.locals = { projects: repositories };
+    // res.locals = { projects: repositories };
     res.render("default");
 });
 
 app.get("/projects", async (req, res) => {
     let repositoryUtil = new RepositoryUtility();
-    let repositories = await repositoryUtil.model.findAll();
-    let ignoredRepositories = ["board-manager", "personal-website", "currency-tracker", "project-ideas", "XamarinFormsSamples"];
+    let repositories = await repositoryUtil.model.findAll({
+        where: {
+            name: {
+                [Op.notIn]: ["board-manager", "currency-tracker", "project-ideas", "board-manager", "sure-player", "simple-framework", "Clangy", "XamarinFormsSamples"]
+            }
+        }
+    });
 
     if (repositories.length === 0) {
         const githubService = require('./services/github-service');
         githubService.fetchGithubRepos();
         repositories = await repositoryUtil.model.findAll();
-    }
-
-    for (let i = 0; i < repositories.length; i++) {
-        let ignoredIndex = ignoredRepositories.findIndex(x => x === repositories[i].dataValues.name);
-
-        if (ignoredIndex > -1) {
-            repositories.splice(i, 1);
-        }
     }
 
     res.locals = { projects: repositories };
@@ -102,11 +98,11 @@ app.get("/project/:repo", async (req, res) => {
     });
 });
 
-app.get("/contact", function(req, res) {
+app.get("/contact", function (req, res) {
     res.render("contact");
 });
 
-app.get("/about", function(req, res) {
+app.get("/about", function (req, res) {
     res.render("about");
 });
 
