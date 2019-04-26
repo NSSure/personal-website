@@ -24,6 +24,7 @@ app.set("layout extractStyles", true);
 app.use(expressLayouts);
 
 const RepositoryUtility = require("./db/utilities/repository-utility");
+const IssueUtility = require("./db/utilities/issue-utility");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
@@ -93,7 +94,13 @@ app.get("/project/:repo", async (req, res) => {
 
     console.log(repository);
 
-    let issues = await github.getRepositoryIssues(repo);
+    let issueUtil = new IssueUtility();
+    let issues = await issueUtil.model.findAll({
+        where: {
+            repositoryGitHubNodeId: repository.gitHubNodeId
+        }
+    })
+    // let issues = await github.getRepositoryIssues(repo);
 
     let repoMarkdown = await markdown.loadRepoMarkdown(repo);
 
