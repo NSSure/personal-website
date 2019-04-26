@@ -1,25 +1,158 @@
-<div class="container" style="padding: 100px;">
+<style>
+    body,
+    html {
+        height: 100%;
+        background-color: transparent !important;
+    }
+
+    .project-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .project-page::before {
+        /* background-image: url(/images/sure-pixel.png); */
+        background-image: url('/<%= repository.gifUrl %>');
+        background-size: cover;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 0.6;
+        box-shadow: inset 0 0 0 3000px rgba(255, 255, 255, 0.3);
+        filter: blur(10px);
+    }
+
+    .project-page::after {
+        background-color: #000000;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.8;
+    }
+
+    .project {
+        background-color: #383838;
+        color: #f7f7f7;
+        padding: 15px;
+    }
+
+    .project-details {
+        background-color: #383838;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .project-details .nav-item .active {
+        background-color: #FFCA28;
+        color: #383838;
+    }
+
+    .tab-content {
+        padding: 15px;
+    }
+
+    a {
+        color: #FFCA28;
+    }
+
+    table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+        border: 1px solid #000000;
+    }
+
+    table td,
+    table th {
+        padding: 10px 5px;
+    }
+
+    table tbody td {
+        font-size: 14px;
+        color: #FFFFFF;
+    }
+
+    table thead {
+        background-color: #FFCA28;
+    }
+
+    table thead th {
+        font-size: 15px;
+        font-weight: bold;
+        color: #383838;
+    }
+
+    table tfoot .links {
+        text-align: right;
+    }
+
+    table tbody tr td {
+        border: 1px solid #000000;
+    }
+
+    table tfoot .links a {
+        display: inline-block;
+        background: #1C6EA4;
+        color: #FFFFFF;
+        padding: 2px 8px;
+        border-radius: 5px;
+    }
+
+    #readme-content h1,h2,h3,h4,h5,h6 {
+        color: #FFCA28;
+    }
+
+    a:hover {
+        color: #FFCA28;
+        font-weight: bold;
+    }
+</style>
+
+<header>
+    <div class="nav">
+        <ul>
+            <li class="home"><a href="/">Home</a></li>
+            <li class="tutorials"><a href="/projects">Projects</a></li>
+            <li class="about"><a href="/blog">Blog</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="container project-page">
     <div class="project" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-        <img class="image" src="<%= repository.owner.avatar_url %>" />
         <div class="content">
             <h4><a href="<%= repository.html_url %>" target="_blank"><%= repository.name %></a></h4>
-            <p>Authored by: <%= repository.owner.login %></p>
             <p>Language: <%= repository.language %></p>
-            <p>Open issues: <%= repository.open_issues_count %></p>
+            <p>Open issues: <%= issues.count %></p>
             <p><%= repository.description %></p>
 
-                <% for (var i = 0; i < repository.topics ? repository.topics.length : 0; i++) { %>
-                    <div class="badge yellow"><%= repository[i] %></div>
-                <% } %>
+            <% for (var i = 0; i < repository.topics ? repository.topics.length : 0; i++) { %>
+            <div class="badge yellow"><%= repository[i] %></div>
+            <% } %>
         </div>
     </div>
 
     <br>
 
-    <div style="background-color: white; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+    <div class="project-details">
         <ul class="nav nav-pills nav-fill" style="margin-bottom: 15px;">
             <li class="nav-item">
-                <a class="nav-link active" id="readme-tab" data-toggle="tab" href="#readme-content" role="tab">Readme</a>
+                <a class="nav-link active" id="readme-tab" data-toggle="tab" href="#readme-content"
+                    role="tab">Readme</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="issues-tab" data-toggle="tab" href="#issues-content" role="tab">Issues</a>
@@ -31,19 +164,26 @@
             </div>
             <div class="tab-pane fade" id="issues-content" role="tabpanel">
                 <div id="issues">
-                    <h5 style="padding: 15px 0;">Repository Issues - Displaying <%= issues.length %> issue(s)</h5>
+                    <h5 style="padding: 15px 0;">Repository Issues - Displaying <%= issues.length %> issue(s)
+                    </h5>
 
                     <% for (var i = 0; i < issues.length; i++) { %>
-                        <div class="item">
-                            <h5><span><a href="<%= issues[i].html_url %>" target="_blank"><%= issues[i].title %></a></span></h5>
-                            <div style="margin-bottom: 15px;"><%= issues[i].body %></div>
+                    <div class="item">
+                        <h5><span><a href="<%= issues[i].html_url %>" target="_blank"><%= issues[i].title %></a></span>
+                        </h5>
+                        <div style="margin-bottom: 15px;"><%= issues[i].body %></div>
 
-                            <div style="margin-bottom: 15px; font-size: .75rem;">Created at: <%= moment(issues[i].created_at).format('MM-DD-YYYY') %> // Updated at: <%= moment(issues[i].updated_at).format('MM-DD-YYYY') %> // Issue #<%= issues[i].number %></div>
-
-                            <% for (var ii = 0; ii < issues[i].labels.length; ii++) { %>
-                                <div class="badge" style="background-color: #<%= issues[i].labels[ii].color %>"><%= issues[i].labels[ii].name %></div>
-                            <% } %>
+                        <div style="margin-bottom: 15px; font-size: .75rem;">Created at:
+                            <%= moment(issues[i].created_at).format('MM-DD-YYYY') %> // Updated at:
+                            <%= moment(issues[i].updated_at).format('MM-DD-YYYY') %> // Issue
+                            #<%= issues[i].number %>
                         </div>
+
+                        <% for (var ii = 0; ii < issues[i].labels.length; ii++) { %>
+                        <div class="badge" style="background-color: #<%= issues[i].labels[ii].color %>">
+                            <%= issues[i].labels[ii].name %></div>
+                        <% } %>
+                    </div>
                     <% } %>
                 </div>
             </div>
@@ -52,65 +192,8 @@
 </div>
 
 <style>
-    table {
-        border: solid 1px #DDEEEE;
-        border-collapse: collapse;
-        border-spacing: 0;
-        font: normal 13px Arial, sans-serif;
-        width: 100%;
-        margin-bottom: 15px;
-    }
-    table thead th {
-        background-color: #DDEFEF;
-        border: solid 1px #DDEEEE;
-        color: #336B6B;
-        padding: 10px;
-        text-align: left;
-        text-shadow: 1px 1px 1px #fff;
-    }
-    table tbody td {
-        border: solid 1px #DDEEEE;
-        color: #333;
-        padding: 10px;
-        text-shadow: 1px 1px 1px #fff;
-    }
-    .project {
-        background-color: #ffffff;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .project > .image {
-
-    }
-
-    .project > .content {
-        padding: 15px;
-    }
-
-    #issues {
-        background-color: white;
-        padding: 15px;
-    }
-
-    #issues .item {
-        background-color: #ffffff;
-        border: 1px solid #e7e7e7;
-        padding: 15px;
-    }
-
-    #issues .item > .header {
-        padding: 15px;
-        background-color: #F0F0F0;
-        border-bottom: 2px dashed silver;
-    }
-
-    #issues .item > .content {
-        padding: 15px;
-    }
-
     pre {
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     }
 </style>
 

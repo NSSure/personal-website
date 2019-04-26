@@ -85,7 +85,14 @@ app.get("/blog/:normalizedUrl", (req, res) => {
 app.get("/project/:repo", async (req, res) => {
     let repo = req.params.repo;
 
-    let repository = await github.getRepository(repo);
+    // let repository = await github.getRepository(repo);
+    let repositoryUtil = new RepositoryUtility();
+    let repository = await repositoryUtil.model.findOne({
+        where: { name: repo }
+    })
+
+    console.log(repository);
+
     let issues = await github.getRepositoryIssues(repo);
 
     let repoMarkdown = await markdown.loadRepoMarkdown(repo);
