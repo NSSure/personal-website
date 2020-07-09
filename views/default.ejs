@@ -1,24 +1,64 @@
-<section class="banner">
-    <div class="banner-inner">
-        <div class="banner-inner-header">
-            <h1>Front-end/Back-end Developer</h1>
+<section>
+    <div class="banner is-shadowed">
+        <div class="banner-inner-head">
+            <h1 class="title-1">Front-end/Back-end Developer</h1>
             <div style="display: flex; flex-direction: row; text-align: center;">
                 <h2 id="type-showcase"></h2>
                 <h2 id="blinking-cursor" style="display: none;">|</h2>
             </div>
             <br>
             <div>
-                <a href="/projects" style="cursor: pointer;" class="btn">Projects</a>
-                <a href="/blog" style="cursor: pointer;" class="btn">Blogs</a>
-                <a href="https://github.com/NSSure" style="cursor: pointer;" class="btn"><i
-                        class="fab fa-github fa-lg"></i></a>
+                <a class="link-button" href="#projects">Projects</a>
+                <a class="link-button" href="/blog" style="cursor: pointer;" class="btn">Blogs</a>
+                <a class="link-button" href="https://github.com/NSSure" style="cursor: pointer;" class="btn"><i class="fab fa-github fa-lg"></i></a>
             </div>
-            <br>
-            <p style="background-color: #F7DF1E; color: #282828; padding: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); border-radius: 8px;">
-                <i class="fa fa-exclamation-triangle"></i>
-                <span>This website is a work in progress</span>
-            </p>
         </div>
+    </div>
+
+    <div class="container">
+        <table class="table mb-default is-rounded is-shadowed" id="projects" style="margin-bottom: 500px !important;">
+            <thead class="fill-light">
+                <tr>
+                    <th>Project</th>
+                    <th>Description</th>
+                    <th style="width: 75px;">Activity</th>
+                    <th>Topics</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (var i = 0; i < projects.length; i++) { %>
+                <tr>
+                    <td>
+                        <a class="cursor-pointer text-blue-lighten-5"
+                            onclick="navigate('/project/<%= projects[i].name %>')">
+                            <%= projects[i].name %>
+                        </a>
+                    </td>
+                    <td>
+                        <%= projects[i].description %>
+                    </td>
+                    <td class="last-updated">
+                        <%= projects[i].updatedAt.toISOString().replace('T', ' ').substr(0, 10) %>
+                    </td>
+                    <td>
+                        <div class="topics">
+                            <% let topics = JSON.parse(projects[i].topics); %>
+
+                            <%if (topics.length > 0) { %>
+                            <% for (var ii = 0; ii < topics.length; ii++) { %>
+                            <div class="topic"><%= topics[ii] %></div>
+                            <% } %>
+                            <% } %>
+
+                            <%if (topics.length === 0) { %>
+                            <span class="last-updated">No topics available</span>
+                            <% } %>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
     </div>
 </section>
 
@@ -55,4 +95,8 @@
             }
         }
     }, 400);
+
+    function navigate(url) {
+        window.location.href = url;
+    }
 </script>

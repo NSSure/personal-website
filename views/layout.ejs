@@ -7,239 +7,36 @@
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
     integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/hybrid.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" />
+
+  <link rel="stylesheet" href="/styles/main.css" />
 
   <% /* Place any styles in the page in this section. */ %>
   <%- style %>
 </head>
 
 <body>
-  <div style="height: 100%; overflow-y: auto;">
-    <%- body %>
-  </div>
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #ECE9E6;
-      color: #f7f7f7;
-      font-family: 'Roboto', sans-serif;
-    }
+  <ul class="nav nav-menu text-dark border-default-bottom">
+    <div class="nav-left">
+      <ul class="nav-item">
+        <li>
+          <a href="/#projects">Projects</a>
+        </li>
+        <li>
+          <a href="/blog">Blog</a>
+        </li>
+        <li>
+          <a href="https://github.com/NSSure" target="_blank">Github</a>
+        </li>
+        <li>
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </div>
+  </ul>
 
-    .banner {
-      color: white;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(images/computer-banner.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-color: rgba(147, 112, 219, 0.8);
-    }
-
-    .banner>.banner-inner>.banner-inner-header h1 {
-      font-size: 4rem;
-    }
-
-    .banner>.banner-inner>.banner-inner-header a {
-      color: white;
-      border: 2px solid white;
-      font-size: 1.5rem;
-    }
-
-    .banner>.banner-inner>.banner-inner-header a:hover {
-      background-color: white;
-      color: #282828;
-    }
-
-    .banner>.banner-inner>.banner-inner-content {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      align-items: center;
-      padding: 0 30px;
-    }
-
-    .banner>.banner-inner>.banner-inner-content>.projects {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      margin: 0 30px;
-    }
-
-    .banner>.banner-inner>.banner-inner-content>.projects .project-card {
-      min-width: 20%;
-      margin-bottom: 0;
-    }
-
-    footer {
-      background-color: #f7f7f7;
-      text-align: center;
-    }
-
-    footer .content {
-      flex-grow: 1;
-      padding: 50px;
-    }
-
-    .navigation-links {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      list-style-type: none;
-      margin: 0;
-      padding: 30px 0;
-      font-size: 1.5rem;
-    }
-
-    .navigation-links li {
-      padding: 15px;
-    }
-
-    .navigation-links li a {
-      color: #333333;
-    }
-
-    .helpful-links {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      background-color: #333333;
-    }
-
-    .helpful-links li {
-      flex-grow: 1;
-      padding: 15px;
-      cursor: pointer;
-    }
-
-    .helpful-links li a {
-      text-decoration: none;
-      display: flex;
-      flex-grow: 1;
-      justify-content: center;
-      color: #f7f7f7;
-    }
-
-    .helpful-links li:hover {
-      background-color: #222222;
-    }
-
-    .text-white {
-      color: white;
-    }
-
-    .badge {
-      background-color: transparent;
-      color: #383838;
-      padding: 10px;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
-
-    .label {
-      background-color: #e7e7e7;
-      color: #333333;
-      display: inline;
-      padding: 3px 5px;
-      font-size: .75rem;
-    }
-
-    .yellow {
-      background-color: #FFCA28;
-    }
-
-    .green {
-      background-color: #41B883;
-    }
-
-    .d-inline {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .last-updated {
-      font-size: .75rem;
-      margin-bottom: 15px;
-    }
-
-    .nav ul {
-      list-style: none;
-      background-color: #383838;
-      text-align: center;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      margin-bottom: 50px;
-    }
-
-    .nav li {
-      font-size: 1rem;
-      line-height: 40px;
-      height: 40px;
-      border-bottom: 1px solid #888;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: #fff;
-      display: block;
-      transition: .3s background-color;
-    }
-
-    .nav a:hover {
-      background-color: #282828;
-    }
-
-    .nav a.active {
-      background-color: #ECE9E6;
-      color: #282828;
-      cursor: default;
-    }
-
-    @media screen and (min-width: 600px) {
-      .nav li {
-        width: 120px;
-        border-bottom: none;
-        height: 50px;
-        line-height: 50px;
-        font-size: 1.4em;
-      }
-
-      /* Option 1 - Display Inline */
-      .nav li {
-        display: inline-block;
-        margin-right: -4px;
-      }
-
-      /* Options 2 - Float
-          .nav li {
-            float: left;
-          }
-          .nav ul {
-            overflow: auto;
-            width: 600px;
-            margin: 0 auto;
-          }
-          .nav {
-            background-color: #444;
-          }
-          */
-    }
-  </style>
+  <%- body %>
 
   <% /* Place any scripts contained in views at the end of the page. */ %>
   <%- script %>
@@ -258,6 +55,19 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 
   <script>hljs.initHighlightingOnLoad();</script>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 
 </body>
 

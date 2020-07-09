@@ -45,11 +45,6 @@ app.get("/", async (req, res) => {
     //     repositories = await repositoryUtil.model.findAll();
     // }
 
-    // res.locals = { projects: repositories };
-    res.render("default");
-});
-
-app.get("/projects", async (req, res) => {
     let repositoryUtil = new RepositoryUtility();
     let repositories = await repositoryUtil.model.findAll({
         where: {
@@ -65,8 +60,12 @@ app.get("/projects", async (req, res) => {
         repositories = await repositoryUtil.model.findAll();
     }
 
+    console.log(repositories);
+
     res.locals = { projects: repositories };
-    res.render("projects");
+
+    // res.locals = { projects: repositories };
+    res.render("default");
 });
 
 app.get("/blog", async (req, res) => {

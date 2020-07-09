@@ -1,9 +1,9 @@
 [
     {
-        "title": "Sample Blog Post",
-        "description": "This is a sample blog post",
+        "title": "Building a Game Engine Width TypeScript: Project Creation and Basic Canvas Functionality",
+        "description": "Setting the development environment and implementing a basic canvas structure for building future functionality.",
         "markdown": "./sample/sample.md",
-        "tags": ["Javascript", "Vue", "Frontend", "Deployment", "Nginx"],
-        "normalizedUrl": "sample-blog-post"
+        "tags": ["TypeScript", "JavaScript", "Game Engine", "Graphics"],
+        "normalizedUrl": "js-game-engine-post-1"
     }
 ]

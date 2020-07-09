@@ -1,72 +1,6 @@
 <style>
-    body,
-    html {
-        height: 100%;
-        background-color: transparent !important;
-    }
-
-    .project-page {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    .project-page::before {
-        /* background-image: url(/images/sure-pixel.png); */
-        background-image: url('/<%= repository.gifUrl %>');
-        background-size: cover;
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-        opacity: 0.6;
-        box-shadow: inset 0 0 0 3000px rgba(255, 255, 255, 0.3);
-        filter: blur(10px);
-        background-color: #111111;
-    }
-
-    .project-page::after {
-        background-color: #000000;
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.8;
-    }
-
-    .project {
-        background-color: #383838;
-        color: #f7f7f7;
-        padding: 15px;
-    }
-
-    .project-details {
-        background-color: #383838;
-        padding: 15px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    }
-
-    .project-details .nav-item .active {
-        background-color: #FFCA28;
-        color: #383838;
-    }
-
     .tab-content {
         padding: 15px;
-    }
-
-    a {
-        color: #FFCA28;
     }
 
     table {
@@ -84,11 +18,10 @@
 
     table tbody td {
         font-size: 14px;
-        color: #FFFFFF;
     }
 
     table thead {
-        background-color: #FFCA28;
+        background-color: #f7f7f7;
     }
 
     table thead th {
@@ -108,17 +41,11 @@
     table tfoot .links a {
         display: inline-block;
         background: #1C6EA4;
-        color: #FFFFFF;
         padding: 2px 8px;
         border-radius: 5px;
     }
 
-    #readme-content h1,h2,h3,h4,h5,h6 {
-        color: #FFCA28;
-    }
-
     a:hover {
-        color: #FFCA28;
         font-weight: bold;
     }
 </style>

@@ -1,22 +1,13 @@
-<header>
-    <div class="nav">
-        <ul>
-            <li class="home"><a href="/">Home</a></li>
-            <li class="tutorials"><a href="/projects">Projects</a></li>
-            <li class="about"><a class="active" href="/blog">Blog</a></li>
-        </ul>
-    </div>
-</header>
-
-<div class="container blog">
+<div class="app-page container">
     <% for (var i = 0; i < posts.length; i++) { %>
-    <div class="post">
-        <div class="title"><a href="/blog/<%= posts[i].normalizedUrl %>"><%= posts[i].title %></a></div>
-        <div class="description"><%= posts[i].description %></div>
-
+    <div class="fill-white is-rounded is-shadowed p-large mb-default">
+        <a href="/blog/<%= posts[i].normalizedUrl %>">
+            <h2 class="title-2"><%= posts[i].title %><h2></h2>
+        </a>
+        <div class="description mb-default"><%= posts[i].description %></div>
         <div class="tags">
             <% for (var ii = 0; ii < posts[i].tags.length; ii++) { %>
-            <div class="label"><%= posts[i].tags[ii] %></div>
+            <div class="topic"><%= posts[i].tags[ii] %></div>
             <% } %>
         </div>
     </div>
@@ -24,26 +15,7 @@
 </div>
 
 <style>
-    .blog {
-        background-color: #ffffff;
-        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .blog>.post {
-        border-bottom: 2px solid #f7f7f7;
-        padding: 15px;
-    }
-
-    .blog>.post>.title {
-        font-size: 1.25rem;
-    }
-
-    .blog>.post>.description {
-        font-size: .75rem;
-        font-style: italic;
-    }
-
-    .blog>.post>.tags {
-        margin-top: 15px;
+    .app-page {
+        margin-top: 30px;
     }
 </style>
