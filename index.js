@@ -103,12 +103,16 @@ app.get("/project/:repo", async (req, res) => {
 
     let repoMarkdown = await markdown.loadRepoMarkdown(repo);
 
-    res.render("project", {
+    var obj = {
         repository: repository,
         issues: issues,
         html: repoMarkdown,
         moment: moment
-    });
+    };
+
+    console.log(obj)
+
+    res.render("project", obj);
 });
 
 app.get("/contact", function (req, res) {

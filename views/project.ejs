@@ -61,11 +61,12 @@
 </header>
 
 <div class="container project-page">
-    <div class="project" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-        <div class="content">
-            <h4><a href="<%= repository.html_url %>" target="_blank"><%= repository.name %></a></h4>
+    <h1 class="title-1"><a href="<%= repository.html_url %>" target="_blank"><%= repository.name %></a></h1>
+
+    <div class="card is-rounded is-shadowed">
+        <div class="card-body">
             <p>Language: <%= repository.language %></p>
-            <p>Open issues: <%= issues.count %></p>
+            <p>Open issues: <%= issues.length %></p>
             <p><%= repository.description %></p>
 
             <% for (var i = 0; i < repository.topics ? repository.topics.length : 0; i++) { %>
@@ -87,7 +88,7 @@
             </li>
         </ul>
         <div class="tab-content" id="project-tab-content">
-            <div class="tab-pane fade show active" id="readme-content" role="tabpanel">
+            <div class="tab-pane" id="readme-content" role="tabpanel">
                 <%- html %>
             </div>
             <div class="tab-pane fade" id="issues-content" role="tabpanel">
