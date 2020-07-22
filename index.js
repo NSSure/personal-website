@@ -30,21 +30,6 @@ const Op = Sequelize.Op;
 
 // Index page
 app.get("/", async (req, res) => {
-    // let repositoryUtil = new RepositoryUtility();
-    // let repositories = await repositoryUtil.model.findAll({
-    //     where: {
-    //         name: {
-    //             [Op.notIn]: ["board-manager", "currency-tracker", "project-ideas", "board-manager", "sure-player", "simple-framework", "Clangy", "XamarinFormsSamples"]
-    //         }
-    //     }
-    // });
-
-    // if (repositories.length === 0) {
-    //     const githubService = require('./services/github-service');
-    //     githubService.fetchGithubRepos();
-    //     repositories = await repositoryUtil.model.findAll();
-    // }
-
     let repositoryUtil = new RepositoryUtility();
     let repositories = await repositoryUtil.model.findAll({
         where: {
@@ -113,10 +98,6 @@ app.get("/project/:repo", async (req, res) => {
     console.log(obj)
 
     res.render("project", obj);
-});
-
-app.get("/contact", function (req, res) {
-    res.render("contact");
 });
 
 app.get("/about", function (req, res) {
