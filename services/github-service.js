@@ -12,13 +12,23 @@ module.exports = {
             });
         }, null, true);
     },
+
     async fetchGithubRepos() {
-        var self = this;
         let githubRepos = await github.listMyRepositories();
         await this.mapGithubReposToDatabase(githubRepos);
     },
+
     mapGithubReposToDatabase(githubRepositories) {
         githubRepositories.forEach(async (gitHubRepo) => {
+            let existingRepo = await repositoryUtil.model.findOne({
+                where: { name: gitHubRepo.name }
+            });
+
+            // Repository already exists just return.
+            if (existingRepo) {
+                return;
+            }
+
             let repositories = [];
 
             let repository = {

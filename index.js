@@ -34,7 +34,12 @@ app.get("/", async (req, res) => {
     let repositories = await repositoryUtil.model.findAll({
         where: {
             name: {
-                [Op.notIn]: ["board-manager", "currency-tracker", "project-ideas", "board-manager", "sure-player", "simple-framework", "Clangy", "XamarinFormsSamples"]
+                [Op.notIn]: [
+                    "sf-instance-info",
+                    "angular-validator",
+                    "sf-instance-info",
+                    "Sass2JSON"
+                ]
             }
         }
     });
@@ -88,6 +93,8 @@ app.get("/project/:repo", async (req, res) => {
 
     let repoMarkdown = await markdown.loadRepoMarkdown(repo);
 
+    repository.topics = JSON.parse(repository.topics);
+
     var obj = {
         repository: repository,
         issues: issues,
@@ -95,7 +102,8 @@ app.get("/project/:repo", async (req, res) => {
         moment: moment
     };
 
-    console.log(obj)
+    console.log('another one');
+    console.log(repository.topics);
 
     res.render("project", obj);
 });
