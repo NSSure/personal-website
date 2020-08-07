@@ -102,8 +102,24 @@ app.get("/project/:repo", async (req, res) => {
         moment: moment
     };
 
+    let demoRepos = [
+        { repo: "interactive-periodic-table", url: "https://periodic.nsgordon.com/" },
+        { repo: "sure-snippets", url: "https://snippets.nsgordon.com/" }, 
+        { repo: "vue-sure-toast", url: "https://sure-toast.nsgordon.com/" }, 
+        { repo: "thanatos-css", url: "https://thanatoscss.com/" }
+    ]
+
+    var demoRepo = demoRepos.find((x) => x.repo === repository.name);
+
+    if (demoRepo) {
+        obj.demoUrl = demoRepo.url;
+    }
+    else {
+        obj.demoUrl = null;
+    }
+
     console.log('another one');
-    console.log(repository.topics);
+    console.log(obj.demoUrl);
 
     res.render("project", obj);
 });

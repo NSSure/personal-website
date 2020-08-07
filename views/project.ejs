@@ -1,7 +1,11 @@
 <div class="container project-page">
     <h1 class="title-1"><%= repository.name %></h1>
 
-    <hr class="mb-large">
+    <% if (demoUrl) { %>
+        <a href="<%= demoUrl %>" target="_blank"><%= demoUrl %></a>
+    <% } %>
+
+    <hr class="mt-large mb-large">
 
     <div class="mb-large">
         <a href="<%= repository.htmlUrl %>" target="_blank">Visit Repo</a> <span>&middot;</span> <a id="issues-tab" href="#issues-content">View Issues</a> 
