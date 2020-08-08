@@ -15,10 +15,12 @@ module.exports = {
 
     async fetchGithubRepos() {
         let githubRepos = await github.listMyRepositories();
+        console.log('[REPOS FETCHED FROM GITHUB]');
         await this.mapGithubReposToDatabase(githubRepos);
     },
 
     mapGithubReposToDatabase(githubRepositories) {
+        console.log('[MAPPING REPOS TO DATABASE]');
         githubRepositories.forEach(async (gitHubRepo) => {
             let existingRepo = await repositoryUtil.model.findOne({
                 where: { name: gitHubRepo.name }
@@ -28,6 +30,8 @@ module.exports = {
             if (existingRepo) {
                 return;
             }
+
+            console.log('Seeding Repo: ' + gitHubRepo.name);
 
             let repositories = [];
 

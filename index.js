@@ -45,8 +45,11 @@ app.get("/", async (req, res) => {
     });
 
     if (repositories.length === 0) {
+        console.log('[QUERYING REPOSITORIES FROM GITHUB]');
+
         const githubService = require('./services/github-service');
         githubService.fetchGithubRepos();
+        
         repositories = await repositoryUtil.model.findAll();
     }
 
